@@ -48,9 +48,9 @@ class Pengeluaran extends BaseController
         }
     }
 
-    public function getData(){
-        $data = $this->pengeluaranModel->findAll();
-        return $this->response->setJSON($data);
+    public function getData() {
+    $data = $this->pengeluaranModel->orderBy('tanggal', 'DESC')->findAll();
+    return $this->response->setJSON($data);
     }
        public function delete($id)
     {
