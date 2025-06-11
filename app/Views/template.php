@@ -120,26 +120,30 @@
 
           <div class="menu-inner-shadow"></div>
 
+          <?php
+              $current_url = $_SERVER['REQUEST_URI'];
+          ?>
+
           <ul class="menu-inner py-1">
-            <li class="menu-item active">
-              <a href="<?= base_url() ?>" class="menu-link">
+        <li class="menu-item <?= ($current_url == '/') ? 'active' : '' ?>">
+            <a href="<?= base_url() ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?= base_url('pemasukan') ?>" class="menu-link">
+            </a>
+        </li>
+        <li class="menu-item <?= (strpos($current_url, 'pemasukan') !== false) ? 'active' : '' ?>">
+            <a href="<?= base_url('pemasukan') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Pemasukan</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?= base_url('pengeluaran') ?>" class="menu-link">
+            </a>
+        </li>
+        <li class="menu-item <?= (strpos($current_url, 'pengeluaran') !== false) ? 'active' : '' ?>">
+            <a href="<?= base_url('pengeluaran') ?>" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Pengeluaran</div>
-              </a>
-            </li>
-          </ul>
+            </a>
+        </li>
+    </ul>
         </aside>
         <!-- / Menu -->
 
