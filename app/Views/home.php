@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <span>Dana Keluar Hari ini</span>
-                        <h3 class="card-title text-nowrap mb-1">Rp <?= number_format($total_today['nominal']) ?></h3>
+                        <h3 class="card-title text-danger text-nowrap mb-1">Rp <?= number_format($total_today['nominal']) ?></h3>
                         <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
                     </div>
                 </div>
