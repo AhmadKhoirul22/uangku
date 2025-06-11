@@ -18,7 +18,7 @@
                         <th>Keterangan</th>
                         <th>Nominal</th>
                         <th>Tanggal</th>
-                        <th>Aksi</th>
+                        <!-- <th>Aksi</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -96,12 +96,18 @@
                     }
                 },
                 {
-                    data: 'tanggal'
+                    data: 'tanggal',
+                    render: function(data, type, row) {
+                        // Mengubah format tanggal
+                        const date = new Date(data);
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                        return date.toLocaleDateString('id-ID', options);
+                    }
                 },
-                {
-                    data: null,
-                    defaultContent: '<button class="btn btn-sm btn-danger">Delete</button>'
-                }
+                // {
+                //     data: null,
+                //     defaultContent: '<button class="btn btn-sm btn-danger">Delete</button>'
+                // }
             ]
         });
 
