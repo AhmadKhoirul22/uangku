@@ -70,7 +70,7 @@
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
             ajax: {
-                url: '<?php echo base_url("pengeluaran/getdata"); ?>', // Ganti dengan URL yang sesuai
+                url: '<?php echo base_url("pemasukan/getdata"); ?>', // Ganti dengan URL yang sesuai
                 dataSrc: ''
             },
             columns: [{
@@ -119,7 +119,7 @@
             e.preventDefault(); // Mencegah form submit standar
 
             $.ajax({
-                url: '<?php echo base_url("pengeluaran/add"); ?>', // Ganti dengan URL controller Anda
+                url: '<?php echo base_url("pemasukan/add"); ?>', // Ganti dengan URL controller Anda
                 type: 'POST',
                 data: $(this).serialize(), // Mengambil semua data dari form
                 dataType: 'json',
