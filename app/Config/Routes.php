@@ -8,6 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 // pemasukan
 $routes->get('/pemasukan','Pemasukan::index');
+$routes->post('/pemasukan/add','Pemasukan::add');
+$routes->get('/pemasukan/getdata','Pemasukan::getData');
 // Pengeluaran
 $routes->get('/pengeluaran','Pengeluaran::index');
 $routes->post('/pengeluaran/add','Pengeluaran::add');
