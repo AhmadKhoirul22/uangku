@@ -69,7 +69,7 @@ class Pengeluaran extends BaseController
             return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus data.']);
         }
     }
-    public function cetak(){
+    public function cetak_pengeluaran(){
         // Ambil data dari form POST
         $tgl_awal = $this->request->getPost('tgl_awal');
         $tgl_akhir = $this->request->getPost('tgl_akhir');
