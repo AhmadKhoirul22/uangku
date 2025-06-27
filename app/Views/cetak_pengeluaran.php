@@ -6,16 +6,33 @@
     <title>Cetak Pengeluaran</title>
 </head>
 <body>
+    <?php
+    function formatTanggalLengkap($tanggal) {
+        // Daftar nama hari dan bulan dalam bahasa Indonesia
+        $hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+        $bulan = [1=>'Januari','Februari','Maret','April','Mei','Juni','Juli',
+                'Agustus','September','Oktober','November','Desember'];
+
+        $tanggalObj = new DateTime($tanggal);
+        $namaHari = $hari[$tanggalObj->format('w')];
+        $tgl = $tanggalObj->format('j');
+        $namaBulan = $bulan[(int)$tanggalObj->format('n')];
+        $tahun = $tanggalObj->format('Y');
+
+        return "$namaHari, $tgl $namaBulan $tahun";
+    }
+    ?>
+
     <h4>Laporan Pengeluaran</h4>
-    <p>Dari: <?= $tgl_awal ?> sampai <?= $tgl_akhir ?></p>
+    <p>Dari: <?= formatTanggalLengkap($tgl_awal) ?> sampai <?= formatTanggalLengkap($tgl_akhir) ?></p>
 
     <table border="1px" >
         <thead>
             <tr>
                 <th>No</th>
+                <th>Tanggal</th>
                 <th>Keterangan</th>
                 <th>Nominal</th>
-                <th>Tanggal</th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +40,9 @@
             <?php foreach ($pengeluaran as $row): ?>
             <tr>
                 <td><?= $no++ ?></td>
+                <td><?= formatTanggalLengkap($row['tanggal']) ?></td>
                 <td><?= esc($row['keterangan']) ?></td>
                 <td>Rp <?= number_format($row['nominal'], 0, ',', '.') ?></td>
-                <td><?= $row['tanggal'] ?></td>
             </tr>
             <?php $total += $row['nominal']; ?>
             <?php endforeach; ?>
