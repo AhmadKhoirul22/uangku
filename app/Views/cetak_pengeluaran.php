@@ -9,7 +9,7 @@
     <h4>Laporan Pengeluaran</h4>
     <p>Dari: <?= $tgl_awal ?> sampai <?= $tgl_akhir ?></p>
 
-    <table class="table table-bordered">
+    <table>
         <thead>
             <tr>
                 <th>No</th>
