@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <span class="fw-semibold d-block mb-1">Dana Masuk Hari Ini</span>
-                        <h3 class="card-title mb-2">$12,628</h3>
+                        <h3 class="card-title text-danger fw-bold text-nowrap mb-1">$12,628</h3>
                         <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <span class="fw-semibold d-block mb-1">Dana Masuk Bulan Ini</span>
-                        <h3 class="card-title mb-2">$12,628</h3>
+                        <h3 class="card-title text-success fw-bold text-nowrap mb-1">$12,628</h3>
                         <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                     </div>
                 </div>
