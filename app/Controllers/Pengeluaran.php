@@ -69,4 +69,29 @@ class Pengeluaran extends BaseController
             return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus data.']);
         }
     }
+    public function cetak(){
+        // Ambil data dari form POST
+        $tgl_awal = $this->request->getPost('tgl_awal');
+        $tgl_akhir = $this->request->getPost('tgl_akhir');
+
+        // Validasi jika tanggal tidak kosong
+        if (!$tgl_awal || !$tgl_akhir) {
+            return redirect()->back()->with('error', 'Tanggal tidak boleh kosong.');
+        }
+
+        $pengeluaranModel = new PengeluaranModel();
+
+        // Ambil data dari tabel berdasarkan rentang tanggal
+        $data['pengeluaran'] = $pengeluaranModel
+            ->where('tanggal >=', $tgl_awal)
+            ->where('tanggal <=', $tgl_akhir)
+            ->orderBy('tanggal', 'ASC')
+            ->findAll();
+
+        $data['tgl_awal'] = $tgl_awal;
+        $data['tgl_akhir'] = $tgl_akhir;
+
+        // Kirim ke view untuk ditampilkan atau dicetak
+        return view('cetak_pengeluaran', $data);
+    }
 }
