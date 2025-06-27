@@ -8,6 +8,7 @@
 <div class="container">
     <div class="text-end mb-3">
         <button type="button" id="openModalBtn" class="btn btn-outline-primary">Tambah</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">Cetak</button>
     </div>
     <div class="card">
         <div class="card-body">
@@ -54,6 +55,38 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Cetak Pengeluaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="<?= base_url('/cetak/pengeluaran') ?>" method="post" >
+            <div class="modal-body">
+                <div class="row g-2">
+                    <div class="col mb-0">
+                        <label for="emailBasic" class="form-label">Tanggal Awal</label>
+                        <input type="date" name="tgl_awal" id="emailBasic" class="form-control" />
+                    </div>
+                    <div class="col mb-0">
+                        <label for="dobBasic" class="form-label">Tanggal Akhir</label>
+                        <input type="date" name="tgl_akhir" id="dobBasic" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
             </form>
