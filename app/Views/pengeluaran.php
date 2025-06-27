@@ -161,7 +161,7 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === 'success') {
-                        alert(response.message);
+                        // alert(response.message);
                         $('#modalAdd').modal('hide'); // Sembunyikan modal
                         table.ajax.reload(); // Reload DataTables
                         $('#addForm')[0].reset(); // Reset form
