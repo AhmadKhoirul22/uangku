@@ -14,3 +14,4 @@ $routes->get('/pemasukan/getdata','Pemasukan::getData');
 $routes->get('/pengeluaran','Pengeluaran::index');
 $routes->post('/pengeluaran/add','Pengeluaran::add');
 $routes->get('/pengeluaran/getdata','Pengeluaran::getData');
+$routes->get('/pengeluaran/cetak','Pengeluaran::cetak_pengeluaran');
