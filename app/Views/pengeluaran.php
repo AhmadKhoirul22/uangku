@@ -70,7 +70,7 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Cetak Pengeluaran</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('/pengeluaran/cetak') ?>" method="post" >
+            <form action="<?= base_url('/pengeluaran/cetak') ?>" method="post" target="_blank" >
             <div class="modal-body">
                 <div class="row g-2">
                     <div class="col mb-0">
