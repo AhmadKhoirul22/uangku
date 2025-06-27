@@ -9,7 +9,7 @@
     <h4>Laporan Pengeluaran</h4>
     <p>Dari: <?= $tgl_awal ?> sampai <?= $tgl_akhir ?></p>
 
-    <table>
+    <table border="1px" >
         <thead>
             <tr>
                 <th>No</th>
@@ -24,14 +24,14 @@
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= esc($row['keterangan']) ?></td>
-                <td><?= number_format($row['nominal'], 0, ',', '.') ?></td>
+                <td>Rp <?= number_format($row['nominal'], 0, ',', '.') ?></td>
                 <td><?= $row['tanggal'] ?></td>
             </tr>
             <?php $total += $row['nominal']; ?>
             <?php endforeach; ?>
             <tr>
                 <th colspan="2">Total</th>
-                <th colspan="2"><?= number_format($total, 0, ',', '.') ?></th>
+                <th colspan="2">Rp <?= number_format($total, 0, ',', '.') ?></th>
             </tr>
         </tbody>
     </table>
