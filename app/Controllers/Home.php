@@ -34,6 +34,8 @@ class Home extends BaseController
     {
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
+        // password_hash($password, PASSWORD_BCRYPT); // saat menyimpan password / add / registrasi
+        // password_verify($password, $user['password']); // saat verifikasi
 
         // Ambil data user berdasarkan email
         $user = new userModel();
