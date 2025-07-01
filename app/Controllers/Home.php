@@ -30,6 +30,20 @@ class Home extends BaseController
         return view('login',$data);
     }
 
+    private function sendOtpEmail($toEmail, $otp){
+        $email = \Config\Services::email();
+
+        $email->setTo($toEmail);
+        $email->setFrom('Ahmad Devs', 'Aplikasi Uangku');
+
+        $email->setSubject('Kode OTP Login Anda');
+        $email->setMessage("Kode OTP Anda adalah: <b>$otp</b>. Berlaku 5 menit.");
+
+        if (!$email->send()) {
+            log_message('error', 'Gagal mengirim email: ' . $email->printDebugger(['headers']));
+        }
+    }
+
     public function auth()
     {
         $email = $this->request->getPost('email');
@@ -42,15 +56,27 @@ class Home extends BaseController
         $cek = $user->where('email',$email)->first();
 
         if ($cek) {
+        $otp = random_int(100000, 999999);
+
+        // Simpan OTP & user ID ke session
+        session()->set([
+            'otp_user_id' => $cek['id'],
+            'otp_code'    => $otp,
+            'otp_expiry'  => time() + 300 // berlaku 5 menit
+        ]);
+
+        // Kirim OTP ke email
+        $this->sendOtpEmail($cek['email'], $otp);
+        return redirect()->to('/verify-otp');
             // Verifikasi password menggunakan password_verify
-            if (password_verify($password, $cek['password'])) {
-                // Jika cocok, set session/login
-                session()->set('user_id', $cek['id']);
-                session()->set('email', $cek['email']);
-                return redirect()->to('/'); // Ganti ke halaman tujuanmu
-            } else {
-                return redirect()->back()->with('error', 'Password salah');
-            }
+            // if (password_verify($password, $cek['password'])) {
+            //     // Jika cocok, set session/login
+            //     session()->set('user_id', $cek['id']);
+            //     session()->set('email', $cek['email']);
+            //     return redirect()->to('/'); // Ganti ke halaman tujuanmu
+            // } else {
+            //     return redirect()->back()->with('error', 'Password salah');
+            // }
         } else {
             return redirect()->back()->with('error', 'Email tidak ditemukan');
         }
