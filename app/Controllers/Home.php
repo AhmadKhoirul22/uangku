@@ -67,7 +67,7 @@ class Home extends BaseController
 
         // Kirim OTP ke email
         $this->sendOtpEmail($cek['email'], $otp);
-        return redirect()->to('/verify-otp');
+        return redirect()->to('/veriy-otp');
             // Verifikasi password menggunakan password_verify
             // if (password_verify($password, $cek['password'])) {
             //     // Jika cocok, set session/login
@@ -81,6 +81,36 @@ class Home extends BaseController
             return redirect()->back()->with('error', 'Email tidak ditemukan');
         }
     }
+    public function veriy_otp(){
+        return view('veriy-otp');
+    }
+    public function verifyOtp(){
+        $inputOtp = $this->request->getPost('otp');
+        $sessionOtp = session()->get('otp_code');
+        $userId = session()->get('otp_user_id');
+        $expiry = session()->get('otp_expiry');
+
+        if (!$sessionOtp || time() > $expiry) {
+            return redirect()->to('/login')->with('error', 'Kode OTP kedaluwarsa');
+        }
+
+        if ($inputOtp == $sessionOtp) {
+            // Login berhasil
+            $userr = new UserModel();
+            $user = $userr->find($userId);
+            session()->remove(['otp_code', 'otp_user_id', 'otp_expiry']);
+            session()->set([
+                'user_id' => $user['id'],
+                'email'   => $user['email'],
+                // bisa tambahkan session lain
+            ]);
+
+            return redirect()->to('/');
+        } else {
+            return redirect()->back()->with('error', 'Kode OTP salah');
+        }
+    }
+
     public function logout(){
     // Hapus semua session
     session()->destroy();

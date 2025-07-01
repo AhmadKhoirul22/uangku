@@ -8,7 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
 $routes->get('/logout', 'Home::logout');
+$routes->get('/veriy-otp', 'Home::veriy_otp');
+$routes->get('/verify-otp', 'Home::verifyOtp');
 $routes->post('/auth', 'Home::auth');
+
 // pemasukan
 $routes->get('/pemasukan','Pemasukan::index');
 $routes->post('/pemasukan/add','Pemasukan::add');
