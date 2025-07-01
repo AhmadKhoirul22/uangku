@@ -32,7 +32,7 @@ class Home extends BaseController
 
     public function auth()
     {
-        $email = $this->request->getPost('email-username');
+        $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
         // Ambil data user berdasarkan email
