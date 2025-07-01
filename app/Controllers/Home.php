@@ -21,4 +21,11 @@ class Home extends BaseController
         ];
         return view('home',$data);
     }
+
+    public function login(){
+        $data = [
+            'title' => 'Login'
+        ];
+        return view('login',$data);
+    }
 }
