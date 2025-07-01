@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\PemasukanModel;
 use App\Models\PengeluaranModel;
+use App\Models\UserModel;
 class Home extends BaseController
 {
     public function index(){
@@ -27,5 +28,29 @@ class Home extends BaseController
             'title' => 'Login'
         ];
         return view('login',$data);
+    }
+
+    public function auth()
+    {
+        $email = $this->request->getPost('email-username');
+        $password = $this->request->getPost('password');
+
+        // Ambil data user berdasarkan email
+        $user = new userModel();
+        $cek = $user->where('email',$email)->first();
+
+        if ($cek) {
+            // Verifikasi password menggunakan password_verify
+            if (password_verify($password, $cek['password'])) {
+                // Jika cocok, set session/login
+                session()->set('user_id', $cek['id']);
+                session()->set('email', $cek['email']);
+                return redirect()->to('/'); // Ganti ke halaman tujuanmu
+            } else {
+                return redirect()->back()->with('error', 'Password salah');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Email tidak ditemukan');
+        }
     }
 }
