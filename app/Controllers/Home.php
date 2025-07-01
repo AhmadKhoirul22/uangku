@@ -53,4 +53,11 @@ class Home extends BaseController
             return redirect()->back()->with('error', 'Email tidak ditemukan');
         }
     }
+    public function logout(){
+    // Hapus semua session
+    session()->destroy();
+    // Redirect ke halaman login (atau halaman utama)
+    return redirect()->to('/login')->with('success', 'Anda berhasil logout');
+    }
+
 }
